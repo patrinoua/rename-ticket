@@ -9,12 +9,8 @@ exports.addRoutes = function addRoutes(api) {
   })
 
   api.route('/').get((req, res) => {
-    console.log('--------------------------------')
-    console.log('REQ QUESY...', req.query)
     const { url, length } = req.query
-
-    const renameTicket = (ticketName = 'nothing was returned', length = 9) => {
-      console.log('length heresss', ticketName, length)
+    const renameTicket = (ticketName = 'nothing was returned', length = 25) => {
       return new Promise(function(resolve, reject) {
         const usefulCharacters = [...ticketName.substr(10)]
         const newTicketName = usefulCharacters.map(character => {
@@ -41,8 +37,7 @@ exports.addRoutes = function addRoutes(api) {
         if (newName[newName.length - 1] == '-')
           newName = newName.substr(0, newName.length - 1)
         if (newName) {
-          console.log('length..', length)
-          resolve({ newName, length })
+          resolve({ newName })
         } else {
           reject(Error('It broke'))
         }
